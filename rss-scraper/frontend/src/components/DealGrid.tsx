@@ -7,7 +7,7 @@ import DealCard from './DealCard';
 import LoadingSkeleton from './LoadingSkeleton';
 import EmptyState from './EmptyState';
 import ErrorState from './ErrorState';
-import { DealGridProps, FeedItem } from '@/types';
+import { DealGridProps } from '@/types';
 
 interface DealGridComponentProps extends DealGridProps {
   className?: string;
