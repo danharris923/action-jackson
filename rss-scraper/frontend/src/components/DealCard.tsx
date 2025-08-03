@@ -29,7 +29,7 @@ const DealCard: React.FC<DealCardComponentProps> = ({
   const hasMoreLinks = affiliateLinks.length > maxLinks;
 
   // Handle link click tracking
-  const handleLinkClick = (link: ProcessedLink, event: React.MouseEvent) => {
+  const handleLinkClick = (link: ProcessedLink) => {
     // Track click analytics if needed
     console.log('Deal link clicked:', {
       original: link.original,
@@ -101,7 +101,7 @@ const DealCard: React.FC<DealCardComponentProps> = ({
                   href={link.final}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => handleLinkClick(link, e)}
+                  onClick={() => handleLinkClick(link)}
                   className={`deal-link group/link ${getNetworkColor(link.network)}`}
                   aria-label={`View deal on ${link.network} (opens in new tab)`}
                 >
