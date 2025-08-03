@@ -1,29 +1,15 @@
 {
   "version": 2,
-  "name": "action-jackson",
-  "framework": "nextjs",
-  "buildCommand": "cd rss-scraper && npm run build",
-  "outputDirectory": "rss-scraper/.next",
-  "installCommand": "cd rss-scraper && npm install",
-  "devCommand": "cd rss-scraper && npm run dev",
-  "headers": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "src": "rss-scraper/package.json",
+      "use": "@vercel/next"
     }
   ],
-  "regions": ["iad1", "sfo1"]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/rss-scraper/$1"
+    }
+  ]
 }
