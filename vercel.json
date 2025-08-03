@@ -6,44 +6,24 @@
   "outputDirectory": "rss-scraper/.next",
   "installCommand": "cd rss-scraper && npm install",
   "devCommand": "cd rss-scraper && npm run dev",
-  "build": {
-    "env": {
-      "PYTHONPATH": "./rss-scraper/scraper"
-    }
-  },
-  "functions": {
-    "rss-scraper/scraper/main.py": {
-      "runtime": "python3.9",
-      "maxDuration": 300
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/scrape",
-      "destination": "/rss-scraper/scraper/main.py"
-    },
-    {
-      "source": "/data/deals.json",
-      "destination": "/rss-scraper/data/deals.json"
-    }
-  ],
   "headers": [
     {
-      "source": "/data/(.*)",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=300, stale-while-revalidate=60"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
       ]
     }
   ],
-  "regions": ["iad1", "sfo1"],
-  "github": {
-    "enabled": false
-  }
+  "regions": ["iad1", "sfo1"]
 }
